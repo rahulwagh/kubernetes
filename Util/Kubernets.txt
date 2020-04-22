@@ -47,6 +47,20 @@ Step 8 Master Node  - Init the kubeadm/start kubeadm
 Step 9  
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
+After running the above command if you see follwoing error - 
+
+error: Missing or incomplete configuration info.  Please point to an existing, complete config file:
+
+  1. Via the command-line flag --kubeconfig
+  2. Via the KUBECONFIG environment variable
+  3. In your home directory as ~/.kube/config
+  
+Then run following command 
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
 error execution phase preflight: couldn't validate the identity of the API Server: Get https://10.0.2.15:6443/api/v1/namespaces/kube-public/configmaps/cluster-info?timeout=10s: dial tcp 10.0.2.15:6443: connect: connection refused
 
 Step 10 
