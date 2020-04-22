@@ -14,7 +14,7 @@ Step 3 Download the public key for accessing packages on Google Cloud
     - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
 Step 4 Add a new source list for the Kubernetes packages:
-    - sudo bash -c 'echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
+    - sudo bash -c 'echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list'
 
 Step 5 Install kubelet, kubeadm, kubectl on master node 
     - sudo apt-get update && sudo apt-get install -y kubelet kubeadm kubectl
