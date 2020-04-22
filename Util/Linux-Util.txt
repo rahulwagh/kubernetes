@@ -2,6 +2,20 @@ Fee memory on Linux - free -m
 CPU running - nproc
 vi - qa! to abondone all changes
 
+================= Firewall ===================
+
+## RHEL and CENTOSsudo systemctl status firewalld
+sudo systemctl stop firewalld
+## turn on:
+sudo systemctl start firewalld
+## UBUNTU
+sudo ufw status verbose
+sudo ufw disable## turn onsudo ufw enable
+## make sure your kube-apiserver can get through port 6443
+sudo ufw allow 6443/tcp
+## try telnet from another host to your apiserver
+telnet MASTER-IP 6443
+
 ================= tmux(https://gist.github.com/andreyvit/2921703) ===================
 tmux : Ctrl-b " split horizontally
 tmux : Ctrl-b  setw synchronize-panes off
