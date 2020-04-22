@@ -1,0 +1,11 @@
+Fee memory on Linux - free -m
+CPU running - nproc
+vi - qa! to abondone all changes
+
+================= tmux(https://gist.github.com/andreyvit/2921703) ===================
+tmux : Ctrl-b " split horizontally
+tmux : Ctrl-b  setw synchronize-panes off
+tmux : Ctrl-b  setw synchronize-panes on
+tmux : swtich pan - Ctrl-b up arrow, Ctrl-b down 
+tmux : Ctrl-b [ scroll logs
+tmux : Ctrl-c to jump back to console

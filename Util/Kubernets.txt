@@ -1,0 +1,59 @@
+Step 1 Install docker - 
+    - sudo apt-get update
+    - sudo apt-get remove docker docker-engine docker.io
+    - sudo apt install docker.io
+    - sudo systemctl start docker
+    - sudo systemctl enable docker
+
+swapoff -a
+
+Step 2 Install https - apt-transport-https package must be installed to access the HTTPS endpoint:
+    - sudo apt-get update && sudo apt-get install -y apt-transport-https
+
+Step 3 Download the public key for accessing packages on Google Cloud
+    - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+Step 4 Add a new source list for the Kubernetes packages:
+    - sudo bash -c 'echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
+
+Step 5 Install kubelet, kubeadm, kubectl on master node 
+    - sudo apt-get update && sudo apt-get install -y kubelet kubeadm kubectl
+
+    worker node 
+    - sudo apt-get update && sudo apt-get install -y kubelet
+
+Step 6 Master Node 
+    - sudo systemctl enable kubelet && sudo systemctl start kubelet
+
+Step 7 Master node 
+    - cd /etc/systemd/system/kubelet.service.d
+    - sudo vi 10-kubeadm.conf
+    Add following at the end of the file - Environment="KUBELET_EXTRA_ARGS=--fail-swap-on=false" 
+
+    (*Note - If it still not work then please do sudo kubeadm reset 
+
+        Step 1- 
+        mkdir -p $HOME/.kube
+        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+        sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+        Step 2-  
+        sudo kubeadm init --ignore-preflight-errors=Swap) 
+
+Step 8 Master Node  - Init the kubeadm/start kubeadm 
+    - sudo kubeadm init --ignore-preflight-errors=Swap
+    - sudo kubeadm init --apiserver-cert-extra-sans 192.100.100.1 --apiserver-advertise-address 192.100.100.1
+
+Step 9  
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+error execution phase preflight: couldn't validate the identity of the API Server: Get https://10.0.2.15:6443/api/v1/namespaces/kube-public/configmaps/cluster-info?timeout=10s: dial tcp 10.0.2.15:6443: connect: connection refused
+
+Step 10 
+Get token - sudo kubeadm token list or kubeadm token create --print-join-command
+
+Step 11 
+Join Node -  sudo kubeadm join --token jlo2ta.9dlzm7o7pcxnd03p 192.168.122.101:6443 --discovery-token-unsafe-skip-ca-verification
+
+
+Logs :::- journalctl -u kubelet
