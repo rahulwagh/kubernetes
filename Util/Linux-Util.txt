@@ -23,3 +23,6 @@ tmux : Ctrl-b  setw synchronize-panes on
 tmux : swtich pan - Ctrl-b up arrow, Ctrl-b down 
 tmux : Ctrl-b [ scroll logs
 tmux : Ctrl-c to jump back to console
+
+================= tmux(https://gist.github.com/andreyvit/2921703) ===================
+know ubuntu verion - lsb_release -a
