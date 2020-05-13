@@ -26,3 +26,9 @@ tmux : Ctrl-c to jump back to console
 
 ================= tmux(https://gist.github.com/andreyvit/2921703) ===================
 know ubuntu verion - lsb_release -a
+
+
+Gnome shell
+
+1. install - sudo apt install gnome-shell-extensions
+2. install - sudo apt install gnome-tweak-tool
